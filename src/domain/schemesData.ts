@@ -1,4 +1,4 @@
-import { SchemeRecord, DocumentChunk, SourceVerificationRecord } from './types';
+import type { SchemeRecord, DocumentChunk, SourceVerificationRecord } from './types.ts';
 
 export const VERIFIED_SCHEMES: SchemeRecord[] = [
   {
