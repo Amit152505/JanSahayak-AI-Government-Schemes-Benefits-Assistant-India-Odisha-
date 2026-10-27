@@ -1,3 +1,5 @@
+Live URL - https://jansahayak-jn-shaayyk-ai-government.onrender.com/
+
 # JanSahayak (ଜନ ସହାୟକ) — AI Government Schemes & Benefits Assistant (India & Odisha)
 
 JanSahayak is a bilingual (**English + Odia / ଓଡ଼ିଆ**), provenance-first Government Schemes & Public Benefits Assistant designed for citizens, field workers, and students across **Odisha** and **India**.
