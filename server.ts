@@ -7,7 +7,7 @@ import {
   VERIFIED_SCHEMES,
   OFFICIAL_DOCUMENT_CHUNKS,
   SOURCE_VERIFICATION_REGISTRY,
-} from './src/domain/schemesData';
+} from './src/domain/schemesData.ts';
 import {
   validateSchemeRecord,
   filterSchemes,
@@ -16,13 +16,13 @@ import {
   detectPromptInjection,
   sanitizeUntrustedEvidence,
   buildDeterministicRAGResponse,
-} from './src/domain/engine';
-import {
+} from './src/domain/engine.ts';
+import type {
   SchemeRecord,
   DocumentChunk,
   RAGAnswerResponse,
   CitationItem,
-} from './src/domain/types';
+} from './src/domain/types.ts';
 
 dotenv.config();
 
@@ -1099,7 +1099,7 @@ Follow these strict grounding rules:
     });
   }
 
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`JanSahayak server running on http://localhost:${PORT}`);
   });
