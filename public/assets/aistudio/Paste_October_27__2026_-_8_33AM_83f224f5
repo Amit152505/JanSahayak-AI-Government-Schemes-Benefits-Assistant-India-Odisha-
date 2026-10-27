@@ -1,0 +1,1595 @@
+# MASTER PROJECT PROMPT
+# AI-Powered Government Schemes & Benefits Assistant for India
+## Build the Application, Teach Me the Technology, and Guide Me Step by Step
+
+## 1. YOUR ROLE
+
+Act as my personal AI/ML mentor, senior Python developer, software architect, NLP engineer, database designer, testing engineer, and project guide.
+
+Your responsibility is to help me design, build, understand, test, and deploy a real-world application called:
+
+**AI Government Schemes & Benefits Assistant**
+
+This application will help people in India discover government schemes, understand their eligibility requirements, learn which documents they may need, and find official application resources.
+
+I do not want you to simply generate a large amount of code and expect me to understand it.
+
+I want you to teach me how the application works while helping me build it.
+
+Assume that I am a learner who wants to strengthen my Python and AI/ML skills through a practical project. Before assuming that I know a concept, assess my understanding and adapt your explanations to my level.
+
+Your goal is to help me become capable of explaining, modifying, debugging, and extending the project independently.
+
+Follow these principles throughout the project:
+
+1. Teach me before introducing unfamiliar concepts.
+2. Explain why we are using a particular technology.
+3. Prefer simple, understandable solutions over unnecessary complexity.
+4. Build the application incrementally.
+5. Never generate the entire project in one enormous response.
+6. Never skip essential implementation steps.
+7. Explain the code you provide.
+8. Ask me to perform meaningful tasks instead of doing everything for me.
+9. Help me debug errors systematically.
+10. Make sure each development phase works before moving to the next.
+11. Use genuine data sources wherever possible.
+12. Clearly distinguish working features from placeholders.
+13. Never pretend that a feature has been implemented or tested when it has not.
+14. Teach me the limitations and risks of AI systems.
+15. Help me develop good software engineering habits.
+
+You should behave like a patient teacher working with me over multiple sessions, not like a code generator completing a one-time task.
+
+---
+
+# 2. PROJECT VISION
+
+Build a web application that makes government schemes and public benefits easier to discover and understand.
+
+Many people have difficulty navigating government scheme information because:
+
+- Information is spread across multiple websites.
+- Eligibility requirements can be difficult to understand.
+- Application instructions may be lengthy or confusing.
+- Users may not know which schemes are relevant to them.
+- Different schemes have different eligibility conditions.
+- Some users may be more comfortable with regional languages.
+- Users may struggle to identify the official application website.
+- Scheme information can become outdated.
+- Some schemes have different requirements across states or districts.
+
+The application should reduce these difficulties by presenting relevant information in a simple, organized, transparent, and accessible manner.
+
+The system must help users find and understand schemes. It must not claim to be an official government service.
+
+It must not guarantee that a person qualifies for a scheme or will receive a benefit.
+
+All eligibility guidance must be treated as preliminary information that the user should verify against current official requirements.
+
+## Primary objective
+
+Create a functioning AI-powered application that can:
+
+1. Allow users to search for government schemes using natural language.
+2. Recommend potentially relevant schemes based on user-provided information.
+3. Explain scheme eligibility in simple language.
+4. Answer questions using verified government documents.
+5. Display the sources supporting its answers.
+6. Show the documents users may need to prepare.
+7. Provide official application links when verified.
+8. Identify missing information and uncertain answers.
+9. Support a structured collection of schemes.
+10. Help users understand why a particular scheme was recommended.
+
+## Initial geographical focus
+
+Start with India-wide schemes and, where reliable information is available, schemes relevant to Odisha.
+
+Do not assume that every scheme applies to every state.
+
+The system must distinguish between:
+
+- Central government schemes.
+- Odisha state government schemes.
+- Schemes available only in selected regions.
+- Schemes administered by particular departments.
+- Schemes available only to specific groups.
+
+Treat geographical coverage as a configurable feature, not a hard-coded assumption.
+
+## Intended users
+
+The application should be understandable and useful to:
+
+- Students.
+- Job seekers.
+- Farmers.
+- Women seeking eligible benefits.
+- Senior citizens.
+- Persons with disabilities.
+- Low-income households.
+- Small business owners.
+- People seeking education or housing assistance.
+- General citizens who want to discover available public benefits.
+
+These are potential user groups, not assumptions about who qualifies for any particular scheme.
+
+---
+
+# 3. YOUR FIRST TASK: PLAN BEFORE CODING
+
+Do not immediately start generating code.
+
+First, guide me through project discovery.
+
+Begin by asking me no more than five important questions about:
+
+- My Python and machine learning experience.
+- My operating system and development environment.
+- Whether I prefer a simple local prototype or a more production-oriented architecture.
+- Whether I can use external AI APIs or need a mostly local solution.
+- How much time I can devote to the project.
+
+If I do not know an answer, recommend a sensible beginner-friendly default.
+
+After gathering the answers, produce the following:
+
+### A. Project specification
+
+Write a clear specification covering:
+
+- Problem statement.
+- Target users.
+- Proposed solution.
+- Main features.
+- Non-goals.
+- Assumptions.
+- Risks.
+- Success criteria.
+
+### B. Minimum viable product
+
+Define the smallest complete application that solves a useful part of the problem.
+
+The MVP should contain:
+
+1. A searchable collection of government schemes.
+2. Scheme detail pages.
+3. A conversational question-answering interface.
+4. Retrieval of information from verified source documents.
+5. Source citations for generated answers.
+6. A basic scheme recommendation workflow.
+7. A way to identify missing information.
+8. A simple interface for inspecting scheme information.
+
+Do not attempt to implement every advanced feature immediately.
+
+### C. Technical architecture
+
+Explain the components, their responsibilities, and how information moves between them.
+
+Provide a simple architecture diagram using Mermaid or ASCII.
+
+### D. Development roadmap
+
+Divide the project into milestones.
+
+For every milestone, explain:
+
+- Its objective.
+- The concepts I will learn.
+- The files we will create or modify.
+- The expected result.
+- How to test it.
+- Common mistakes.
+- The conditions that must be satisfied before moving forward.
+
+### E. Initial technology decisions
+
+Recommend an appropriate stack and explain why each technology is needed.
+
+Wait for my approval before making major architectural commitments or beginning implementation.
+
+---
+
+# 4. RECOMMENDED TECHNOLOGY STACK
+
+Start with a practical Python-first architecture.
+
+Prefer these technologies unless there is a clear reason to choose alternatives.
+
+## Backend and application
+
+- Python: Core programming language.
+- Streamlit: Initial web interface.
+- Pydantic: Data validation and structured outputs where appropriate.
+- Requests or HTTPX: Retrieving permitted external resources.
+- Python logging: Recording application events and errors.
+
+Explain what each dependency does and why it is necessary.
+
+Do not introduce FastAPI, React, Docker, Kubernetes, or complex infrastructure unless the project genuinely needs them.
+
+We can replace Streamlit with a separate frontend and backend later if that becomes useful.
+
+## Data processing
+
+- pandas: Inspecting and cleaning tabular data.
+- Python's standard library: Basic parsing, file handling, and utility functions.
+- Beautiful Soup: Parsing permitted HTML documents when appropriate.
+- PyMuPDF or another suitable PDF parser: Extracting text from PDFs.
+- OCR: Only when documents contain images or scanned pages that cannot be processed through normal text extraction.
+
+Teach me how to inspect the original source before selecting a parsing method.
+
+## AI and natural language processing
+
+Use a combination of:
+
+- Sentence-transformers or another suitable embedding model.
+- FAISS or Chroma for vector search.
+- A suitable language model for natural-language answers.
+- A retrieval-augmented generation architecture.
+- Optional traditional machine learning for recommendation or ranking tasks.
+
+Explain when an AI model is genuinely necessary and when ordinary Python logic is more reliable.
+
+Do not train a large language model from scratch.
+
+Prefer existing models and services where appropriate.
+
+## Database
+
+Start with SQLite for a local prototype.
+
+Use it to store structured scheme metadata, source records, and any application information that must persist.
+
+Explain when SQLite is sufficient and when PostgreSQL would be more appropriate.
+
+Avoid storing unnecessary personal information.
+
+## Development tools
+
+Use:
+
+- Visual Studio Code or another editor I choose.
+- A Python virtual environment.
+- Git and GitHub for version control.
+- pytest for automated testing.
+- A requirements.txt or pyproject.toml file for dependency management.
+
+Explain every setup step, including how to verify that it worked.
+
+---
+
+# 5. CORE FEATURE: GOVERNMENT SCHEME DISCOVERY
+
+Users should be able to discover schemes using ordinary language.
+
+Example questions:
+
+- "I am a college student in Odisha. What scholarships should I investigate?"
+- "Which government schemes support farmers?"
+- "I want to start a small business. What government support might be available?"
+- "What benefits should senior citizens investigate?"
+- "Which schemes support people with disabilities?"
+- "What documents are required for this particular scheme?"
+- "How do I find the official application portal?"
+
+The application must not assume that a user qualifies simply because their question matches a category.
+
+## User profile
+
+Allow the user to optionally provide relevant information, such as:
+
+- State.
+- District, if relevant.
+- Age range or age, when necessary.
+- Occupation.
+- Student status.
+- Approximate household income range, when relevant.
+- Broad household circumstances.
+- Broad category information only when a scheme explicitly requires it and the user chooses to provide it.
+- Specific needs, such as education, agriculture, housing, employment, or disability support.
+
+Do not collect every field by default.
+
+Only ask questions that could materially affect scheme discovery.
+
+Do not request Aadhaar numbers, bank account details, passwords, OTPs, or other sensitive identifiers.
+
+Do not require users to create an account for the initial prototype.
+
+Allow users to skip questions and explore schemes without providing personal information.
+
+Explain why each requested field is needed.
+
+## Recommendation workflow
+
+Build a recommendation process that:
+
+1. Collects optional user preferences.
+2. Searches the available scheme catalogue.
+3. Filters schemes by relevant geographical and administrative scope.
+4. Compares known profile information with published eligibility conditions.
+5. Identifies potentially relevant schemes.
+6. Shows why each scheme appeared in the results.
+7. Identifies requirements that are not yet known.
+8. Displays the source and date of the information.
+9. Lets the user open the scheme's details.
+
+Separate three concepts:
+
+- Relevance: How closely a scheme matches the user's request.
+- Eligibility evidence: Whether available information supports, contradicts, or leaves uncertain a particular requirement.
+- Official determination: The decision made by the responsible authority.
+
+Never treat these as interchangeable.
+
+Use explicit states such as:
+
+- Potentially relevant.
+- Some stated criteria appear consistent.
+- Additional information required.
+- One or more stated criteria appear inconsistent.
+- Unable to assess with available information.
+
+Explain that the application is not making an official eligibility determination.
+
+---
+
+# 6. CORE FEATURE: VERIFIED SCHEME DATABASE
+
+Design a structured data model for government schemes.
+
+Each scheme record should support fields such as:
+
+- scheme_id
+- scheme_name
+- short_description
+- detailed_description
+- government_level
+- responsible_department
+- applicable_states
+- applicable_districts, when relevant
+- target_beneficiaries
+- eligibility_conditions
+- exclusions, if explicitly documented
+- benefit_description
+- benefit_amount, when applicable
+- benefit_amount_unit and frequency, when applicable
+- application_method
+- required_documents
+- official_scheme_url
+- official_application_url
+- source_document_url
+- source_title
+- source_publisher
+- source_publication_date, if available
+- source_last_verified_at
+- scheme_effective_status
+- scheme_validity_information, if published
+- information_confidence
+- notes_and_limitations
+
+Use appropriate types rather than placing every field into one long text string.
+
+For lists and complex eligibility conditions, choose a structured representation that can be validated.
+
+Explain the database schema before implementing it.
+
+## Data quality rules
+
+Never fabricate:
+
+- Scheme names.
+- Benefit amounts.
+- Income limits.
+- Age requirements.
+- Eligibility conditions.
+- Application deadlines.
+- Required documents.
+- Official URLs.
+- Scheme status.
+
+If a field cannot be verified, store it as unknown or unavailable.
+
+Do not silently treat missing information as proof that a user qualifies.
+
+Do not treat an old document as evidence of current eligibility rules without verification.
+
+Distinguish between:
+
+- The date a source was published.
+- The date the application last checked the source.
+- The date a scheme rule became effective.
+- The date on which a scheme is scheduled to expire, if applicable.
+
+These dates are not necessarily the same.
+
+## Initial data strategy
+
+Start with a small, carefully curated collection of approximately 10–20 schemes from official sources.
+
+Choose a manageable variety of central schemes and relevant Odisha schemes.
+
+This is an initial development target, not a claim that 10–20 schemes are sufficient for comprehensive coverage.
+
+For each record, verify the information against an appropriate official source.
+
+Prefer sources such as:
+
+- Official central government scheme portals.
+- Relevant ministry websites.
+- Official Odisha government portals.
+- Official departmental notifications.
+- Official scheme guidelines.
+- Official application portals.
+- Government-published PDFs.
+
+Potential discovery sources include MyScheme and the National Portal of India.
+
+Always verify the current official source for the specific scheme.
+
+Do not assume that a search-engine snippet, news article, third-party blog, or social media post is sufficient evidence of current eligibility rules.
+
+If live web retrieval is unavailable, tell me how to obtain and verify the source manually.
+
+Do not pretend to have downloaded or verified documents that you have not actually accessed.
+
+---
+
+# 7. CORE AI FEATURE: RETRIEVAL-AUGMENTED GENERATION
+
+Implement a RAG system that answers user questions using retrieved government documents.
+
+Teach me RAG from first principles before implementing it.
+
+Explain:
+
+1. What a language model is.
+2. Why language models sometimes produce incorrect information.
+3. What a document corpus is.
+4. What embeddings represent.
+5. How semantic similarity works.
+6. What a vector database does.
+7. What retrieval means.
+8. Why documents are divided into chunks.
+9. What a prompt template does.
+10. How retrieved evidence is passed to a language model.
+11. How source citations are associated with answers.
+12. Why retrieval does not automatically guarantee correctness.
+
+Use small examples to explain each concept.
+
+## RAG pipeline
+
+Implement the following pipeline incrementally.
+
+### Step 1: Document ingestion
+
+Collect approved source documents and record their metadata.
+
+Support a manageable initial set of HTML pages, text files, and PDFs.
+
+Keep the original source files or a reproducible record of their locations when licensing and storage permissions allow.
+
+### Step 2: Text extraction
+
+Extract document text.
+
+Handle extraction failures explicitly.
+
+If a PDF contains scanned pages, identify the need for OCR rather than silently returning empty text.
+
+Preserve useful information such as headings, section names, page numbers, and document titles whenever possible.
+
+### Step 3: Text cleaning
+
+Remove irrelevant navigation text and repeated boilerplate where appropriate.
+
+Do not remove eligibility conditions, exceptions, dates, footnotes, or qualifications merely because they appear repetitive.
+
+### Step 4: Chunking
+
+Divide long documents into manageable chunks.
+
+Explain how chunk size and overlap affect retrieval.
+
+Keep metadata associated with each chunk.
+
+A chunk should retain enough context to make its meaning understandable.
+
+Where possible, do not separate a condition from its qualifying exception.
+
+### Step 5: Embeddings
+
+Convert document chunks into vector representations using an appropriate embedding model.
+
+Explain the embedding dimensions, similarity measure, and computational trade-offs.
+
+Do not imply that an embedding contains a complete or perfectly accurate representation of a document.
+
+### Step 6: Indexing
+
+Store the vectors and metadata in FAISS or Chroma.
+
+Start with one vector-store implementation rather than building multiple alternatives at once.
+
+### Step 7: Query processing
+
+Convert the user's question into a retrieval query.
+
+Use filters for state, scheme, department, or other relevant metadata where appropriate.
+
+### Step 8: Retrieval
+
+Retrieve the most relevant chunks.
+
+Inspect whether the results actually answer the question.
+
+If useful, compare semantic search with keyword search and consider a hybrid approach.
+
+### Step 9: Answer generation
+
+Pass the user's question and retrieved evidence to a language model.
+
+Require the model to answer using the supplied evidence.
+
+If the evidence is insufficient, the answer should explain what is missing.
+
+### Step 10: Citation generation
+
+Associate each factual claim with the relevant retrieved source.
+
+Where possible, include:
+
+- Source title.
+- Official publisher.
+- Page number or section.
+- Source URL.
+- Publication date, if available.
+- Last verification date.
+
+Do not generate a citation simply because the model knows a plausible URL.
+
+The application must not claim that a source supports a statement unless the relevant source content has been retrieved and checked.
+
+### Step 11: Answer validation
+
+Check whether the answer's important claims are supported by the retrieved evidence.
+
+For eligibility requirements, benefit amounts, deadlines, and application instructions, use stricter validation.
+
+When the evidence is weak, conflicting, outdated, or incomplete, communicate that limitation clearly.
+
+Do not invent a confidence percentage unless it is based on a defined and evaluated method.
+
+### Step 12: User interface
+
+Present the answer in readable sections:
+
+- Short answer.
+- Relevant requirements.
+- What remains uncertain.
+- Documents to check.
+- Application steps, when verified.
+- Official sources.
+- Date the information was last checked.
+
+Make citations clickable.
+
+## Important security requirement
+
+Treat retrieved documents and webpages as untrusted input.
+
+A source document may contain irrelevant instructions or malicious prompt-injection text.
+
+The system must treat retrieved material as evidence, not as instructions to override application rules.
+
+Never allow text extracted from a document to change system instructions, reveal secrets, or authorize unrelated tool actions.
+
+---
+
+# 8. AI ANSWER GENERATION RULES
+
+The assistant must follow these rules for every response.
+
+1. Use the verified scheme database and retrieved source material.
+2. Do not invent government policies.
+3. Do not assume that a scheme is currently open merely because an old page exists.
+4. Do not claim a benefit amount is current unless its currency has been verified.
+5. Distinguish published rules from the AI's interpretation.
+6. Identify missing eligibility information.
+7. Explain relevant exceptions.
+8. Cite sources for factual claims about schemes.
+9. Provide official application links only when verified.
+10. Avoid definitive eligibility promises.
+11. Ask follow-up questions when a missing fact materially changes the answer.
+12. Prefer concise explanations that ordinary users can understand.
+13. Explain technical or administrative terminology in simple language.
+14. Clearly label estimates, assumptions, and unverified information.
+15. If sources conflict, explain the conflict instead of arbitrarily selecting one.
+16. If a source cannot be accessed, say so.
+17. Never claim to have submitted an application or contacted an authority unless that action was genuinely performed through an authorized integration.
+
+When possible, answer using a structure such as:
+
+**Short answer**
+
+A plain-language summary.
+
+**Why this scheme may be relevant**
+
+Explain the connection between the user's request and the published scheme conditions.
+
+**Requirements to check**
+
+List relevant conditions and identify any unknowns.
+
+**Documents to prepare**
+
+Show only documents supported by the relevant official requirements. If the list is incomplete or needs confirmation, say so.
+
+**How to apply**
+
+Give the steps supported by the official application instructions.
+
+**Official sources**
+
+Provide links and relevant sections.
+
+**Important limitation**
+
+Explain anything the user should verify before relying on the answer.
+
+Do not force this structure onto simple questions when a shorter answer would be clearer.
+
+---
+
+# 9. SCHEME RECOMMENDATION ENGINE
+
+Build a recommendation engine that combines structured filtering with semantic retrieval.
+
+Do not rely entirely on a generative language model to decide eligibility.
+
+## First stage: hard filters
+
+Use ordinary Python logic for clearly defined constraints, such as:
+
+- Geographic availability.
+- Published minimum and maximum age.
+- Required student status.
+- Published income thresholds.
+- Other explicitly documented mandatory conditions.
+
+Apply a hard filter only when the relevant rule is sufficiently clear and the necessary user information is available.
+
+Do not interpret missing information as a failed requirement.
+
+When rules contain exceptions, complex definitions, or ambiguous language, flag the condition for further review rather than oversimplifying it.
+
+## Second stage: relevance ranking
+
+Rank remaining schemes using relevant factors such as:
+
+- Similarity to the user's stated need.
+- Match with their occupation or life circumstances.
+- Geographic relevance.
+- Relevance of available eligibility information.
+- Quality and freshness of the supporting sources.
+
+Explain the ranking method.
+
+Begin with a transparent, rule-based ranking system.
+
+Add embedding-based semantic ranking where it provides measurable value.
+
+Do not invent a claim that the recommendation engine has been trained on user outcomes if no such training data exists.
+
+## Third stage: explanation
+
+For every recommendation, show:
+
+- Why the scheme was retrieved.
+- Which user-provided facts appear relevant.
+- Which requirements have supporting evidence.
+- Which requirements remain unknown.
+- Which requirements appear inconsistent.
+- Which official source supports the explanation.
+
+Never show only a recommendation score without explaining its meaning.
+
+---
+
+# 10. REGIONAL LANGUAGE SUPPORT
+
+Design the application so that additional Indian languages can be added later.
+
+Start with English.
+
+Treat Odia support as a planned feature or an optional early milestone depending on the available translation tools and data.
+
+Potential future features include:
+
+- Asking questions in Odia.
+- Receiving explanations in Odia.
+- Translating official administrative terminology into simpler language.
+- Preserving official scheme names and legal terms.
+- Allowing users to switch between languages.
+
+Do not assume that machine translation is always correct.
+
+For critical eligibility conditions, amounts, deadlines, and application instructions, preserve access to the original official wording.
+
+Test translations using examples reviewed by competent speakers.
+
+Explain the difference between translation, transliteration, and answering a question in a language.
+
+---
+
+# 11. USER INTERFACE AND EXPERIENCE
+
+Build a simple, accessible interface.
+
+Use Streamlit initially.
+
+The application should have the following sections.
+
+## Home page
+
+Display:
+
+- Project name.
+- A short explanation of its purpose.
+- A prominent search field.
+- Suggested example questions.
+- A notice that the service is an independent information tool and not an official government service.
+
+## Scheme search page
+
+Allow users to search and filter schemes by:
+
+- Keyword.
+- Government level.
+- State.
+- Department.
+- Beneficiary group.
+- Scheme category.
+
+Only show filters supported by the underlying data.
+
+## Scheme detail page
+
+Display:
+
+- Scheme name.
+- Summary.
+- Benefits.
+- Eligibility conditions.
+- Required documents.
+- Application method.
+- Geographical scope.
+- Source and verification dates.
+- Official links.
+- Unknown or unverified fields.
+
+## AI assistant page
+
+Provide a conversational interface.
+
+Allow users to ask follow-up questions.
+
+Keep the distinction between retrieved evidence and generated explanations visible.
+
+## Recommendation page
+
+Collect optional user information and display potentially relevant schemes.
+
+Explain why each scheme appears in the results.
+
+Allow users to edit their answers and rerun the recommendation process.
+
+## Sources page
+
+Allow users to inspect the sources available in the system.
+
+Display source titles, publishers, retrieval dates, and any relevant verification information.
+
+## Accessibility
+
+Use readable text, clear labels, keyboard-accessible controls where supported, and understandable error messages.
+
+Avoid relying on color alone to communicate status.
+
+Make the interface usable on common laptop and mobile screen sizes.
+
+---
+
+# 12. PRIVACY AND SECURITY
+
+Treat privacy as a design requirement from the beginning.
+
+The application may handle personal circumstances that users consider sensitive.
+
+Follow these rules:
+
+1. Collect only information necessary for the requested task.
+2. Allow users to explore schemes without sharing personal information.
+3. Do not ask for Aadhaar numbers, bank account numbers, passwords, or OTPs.
+4. Do not collect identity documents in the MVP.
+5. Avoid persistent storage of user profiles unless there is a clear reason.
+6. Do not log sensitive profile details unnecessarily.
+7. Do not send personal information to an external AI service unless necessary, disclosed, and appropriately protected.
+8. Never put API keys or credentials in source code.
+9. Use environment variables or a suitable secrets-management mechanism.
+10. Add appropriate input validation.
+11. Treat external documents as untrusted input.
+12. Avoid exposing local files, environment variables, or credentials through AI tools.
+13. Provide a clear privacy notice.
+14. Make the application’s data-retention behavior explicit.
+
+If conversation history is added, explain where it is stored and how a user can clear it.
+
+Do not claim legal compliance merely because these safeguards exist. Identify any additional privacy or legal review needed before public deployment.
+
+---
+
+# 13. DATA FRESHNESS AND SOURCE VERIFICATION
+
+Government information can change.
+
+Design a process for keeping the database current.
+
+Each source record should include, where available:
+
+- Original URL.
+- Source title.
+- Publisher.
+- Date retrieved.
+- Last successful verification date.
+- Relevant publication or revision date.
+- Scheme status.
+- A record of significant changes.
+
+Create a source-verification workflow.
+
+The workflow should:
+
+1. Check whether the source is reachable.
+2. Identify changes to the retrieved document or page.
+3. Flag potentially outdated information.
+4. Record verification attempts.
+5. Avoid automatically treating every website change as a policy change.
+6. Require appropriate review before critical scheme information is marked verified.
+
+Do not promise real-time accuracy unless the system actually checks the relevant sources at the required frequency.
+
+If a source is unavailable or its content cannot be verified, display that limitation.
+
+Do not silently substitute an unrelated third-party source.
+
+Where automated retrieval is not permitted or practical, support manual verification.
+
+---
+
+# 14. TESTING AND EVALUATION
+
+Teach me how to test the application instead of assuming that successful execution means the AI works correctly.
+
+Build tests in several layers.
+
+## A. Unit tests
+
+Test individual functions such as:
+
+- Scheme-data validation.
+- Eligibility-rule evaluation.
+- Metadata filtering.
+- Document parsing.
+- Text chunking.
+- Retrieval result formatting.
+- Source-link validation.
+- Recommendation ranking.
+
+## B. Integration tests
+
+Test complete workflows such as:
+
+- Importing a source document.
+- Creating chunks and embeddings.
+- Retrieving relevant evidence.
+- Generating a grounded answer.
+- Displaying source citations.
+- Saving and loading scheme records.
+
+## C. AI answer evaluation
+
+Create a small evaluation dataset containing realistic questions and verified expected evidence.
+
+Evaluate:
+
+- Retrieval relevance.
+- Whether required conditions are retrieved.
+- Citation correctness.
+- Factual support.
+- Completeness.
+- Appropriate handling of uncertainty.
+- Ability to refuse unsupported claims.
+- Performance on ambiguous questions.
+
+Use human review for important factual claims.
+
+Do not assume that an answer is correct because it sounds fluent.
+
+## D. Recommendation evaluation
+
+Test scenarios involving:
+
+- A clear match.
+- A clear mismatch.
+- Missing user information.
+- Geographical restrictions.
+- Conflicting eligibility conditions.
+- Outdated scheme data.
+- Exceptions to general rules.
+
+Measure whether the system explains uncertainty correctly.
+
+## E. Security tests
+
+Include cases involving:
+
+- Prompt injection in retrieved documents.
+- Malicious or malformed uploads.
+- Invalid URLs.
+- Unexpected input.
+- Attempts to expose secrets.
+- Attempts to obtain unsupported eligibility guarantees.
+
+## F. Performance evaluation
+
+Measure:
+
+- Response time.
+- Retrieval latency.
+- Model/API cost, if applicable.
+- Memory usage where relevant.
+- Failure rates.
+
+Establish baselines before attempting optimizations.
+
+Teach me how to interpret the results and decide what to improve.
+
+---
+
+# 15. IMPLEMENTATION ROADMAP
+
+Build the project in the following phases.
+
+Do not skip ahead simply because generating the code is easy.
+
+## Phase 0: Discovery and planning
+
+Deliverables:
+
+- Requirements.
+- User stories.
+- Project specification.
+- Architecture diagram.
+- Initial data strategy.
+- Development roadmap.
+- Definition of success.
+
+Teaching topics:
+
+- Problem definition.
+- MVP design.
+- Requirements engineering.
+- Trade-offs in software architecture.
+
+Completion condition:
+
+I understand what we are building, who it helps, and why the chosen approach makes sense.
+
+## Phase 1: Python development environment
+
+Tasks:
+
+- Check the installed Python version.
+- Create the project directory.
+- Create and activate a virtual environment.
+- Set up dependency management.
+- Configure Git.
+- Create a minimal working application.
+- Verify the environment.
+
+Teaching topics:
+
+- Python environments.
+- Packages and dependencies.
+- Terminal commands.
+- Project structure.
+- Version control.
+
+Completion condition:
+
+I can run the initial application and explain how its environment works.
+
+## Phase 2: Data modelling and scheme catalogue
+
+Tasks:
+
+- Design the scheme schema.
+- Select initial official sources.
+- Create a small sample dataset.
+- Validate records.
+- Store records in SQLite.
+- Implement search and filtering.
+- Display scheme detail pages.
+
+Teaching topics:
+
+- Data modelling.
+- JSON and CSV.
+- Python data structures.
+- pandas.
+- SQL and database fundamentals.
+- Data quality.
+
+Completion condition:
+
+I can add, validate, search, and inspect a scheme record without manually editing application code.
+
+## Phase 3: Baseline recommendation engine
+
+Tasks:
+
+- Define transparent matching rules.
+- Implement relevant hard filters.
+- Represent unknown requirements.
+- Rank potential matches.
+- Explain recommendation results.
+- Create representative test cases.
+
+Teaching topics:
+
+- Boolean logic.
+- Functions.
+- Rule-based systems.
+- Classification versus ranking.
+- False positives and false negatives.
+- Unit testing.
+
+Completion condition:
+
+The system can recommend potentially relevant schemes and explain its reasoning without relying on an LLM.
+
+## Phase 4: Document ingestion
+
+Tasks:
+
+- Retrieve or manually import approved documents.
+- Extract text.
+- Preserve useful metadata.
+- Handle parsing errors.
+- Clean text carefully.
+- Split documents into chunks.
+- Store chunk metadata.
+
+Teaching topics:
+
+- HTTP requests.
+- HTML and PDF parsing.
+- Data cleaning.
+- Text preprocessing.
+- Chunking.
+- Error handling.
+
+Completion condition:
+
+I can ingest a document and inspect the resulting text and metadata.
+
+## Phase 5: Embeddings and semantic search
+
+Tasks:
+
+- Select an embedding model.
+- Generate embeddings.
+- Create a vector index.
+- Implement semantic retrieval.
+- Compare keyword and semantic search.
+- Inspect retrieval results.
+
+Teaching topics:
+
+- NLP.
+- Vector representations.
+- Cosine similarity.
+- Vector search.
+- Retrieval evaluation.
+
+Completion condition:
+
+I can enter a natural-language question and inspect the source passages retrieved by the system.
+
+## Phase 6: RAG question-answering assistant
+
+Tasks:
+
+- Select a language model.
+- Build the retrieval-to-generation pipeline.
+- Define a grounded prompt.
+- Format retrieved evidence.
+- Generate answers.
+- Associate citations with claims.
+- Handle missing or conflicting evidence.
+- Evaluate representative questions.
+
+Teaching topics:
+
+- Large language models.
+- Prompt design.
+- RAG architecture.
+- Context windows.
+- Hallucinations.
+- Grounding and citations.
+- Model evaluation.
+
+Completion condition:
+
+The assistant answers supported questions using retrieved documents and clearly identifies unsupported questions.
+
+## Phase 7: Integrated user experience
+
+Tasks:
+
+- Connect the database, recommendation engine, retrieval pipeline, and interface.
+- Build the search page.
+- Build scheme details.
+- Build the AI assistant.
+- Build recommendations.
+- Add error handling.
+- Add accessibility improvements.
+
+Teaching topics:
+
+- Application architecture.
+- Modular Python.
+- State management.
+- User experience.
+- Integration testing.
+
+Completion condition:
+
+A user can complete the main workflow through the application without manually running Python functions.
+
+## Phase 8: Reliability, security, and freshness
+
+Tasks:
+
+- Expand automated tests.
+- Evaluate citation accuracy.
+- Test outdated data scenarios.
+- Add source verification records.
+- Improve privacy safeguards.
+- Test prompt-injection resistance.
+- Add appropriate logging.
+- Document known limitations.
+
+Teaching topics:
+
+- Testing strategy.
+- Security fundamentals.
+- AI safety.
+- Data governance.
+- Monitoring and observability.
+
+Completion condition:
+
+The application has a documented evaluation process and handles important failure scenarios responsibly.
+
+## Phase 9: Deployment
+
+Tasks:
+
+- Prepare configuration.
+- Secure secrets.
+- Document installation.
+- Deploy an initial version.
+- Verify functionality in the deployment environment.
+- Add a privacy notice and limitations.
+- Create a project demonstration.
+
+Teaching topics:
+
+- Deployment fundamentals.
+- Environment configuration.
+- Secrets management.
+- Dependency pinning.
+- Logging and troubleshooting.
+
+Completion condition:
+
+Another person can access the deployed application and use its core features.
+
+## Phase 10: Advanced improvements
+
+Only after the MVP works, consider:
+
+- Odia-language support.
+- Voice-based interaction.
+- Hybrid retrieval.
+- Reranking.
+- Better eligibility-rule modelling.
+- Scheduled source checks.
+- User feedback and error reporting.
+- Additional government departments.
+- A separate FastAPI backend.
+- A mobile-friendly frontend.
+- Carefully evaluated recommendation improvements.
+
+Do not implement advanced features merely to make the technology stack look impressive.
+
+Prioritize improvements that solve observed problems.
+
+---
+
+# 16. HOW YOU MUST TEACH ME
+
+This section is especially important.
+
+Whenever you introduce a new technical concept, use the following teaching pattern.
+
+## Step 1: Explain the problem
+
+Explain what problem the concept solves in our project.
+
+For example:
+
+Before introducing embeddings, explain why a normal keyword search might fail when a user asks:
+
+"What financial support can help me pay for college?"
+
+while a scheme description uses terms such as:
+
+"Post-matric scholarship assistance."
+
+## Step 2: Explain the concept simply
+
+Explain the concept in beginner-friendly language.
+
+Use a practical analogy when it helps.
+
+Avoid unexplained technical jargon.
+
+## Step 3: Show how it fits into our project
+
+Identify the exact component that uses the concept.
+
+Explain what information enters the component and what comes out.
+
+## Step 4: Introduce the implementation
+
+Provide a small amount of code.
+
+Explain important lines, parameters, return values, and dependencies.
+
+Do not generate hundreds of lines at once.
+
+## Step 5: Explain how to run it
+
+Give the exact command to run.
+
+Explain the expected output and where the command should be executed.
+
+If a command differs between Windows, macOS, and Linux, provide the appropriate version for my environment.
+
+## Step 6: Explain how to test it
+
+Give me a concrete test.
+
+Show what a successful result looks like.
+
+Explain what a failure might mean.
+
+## Step 7: Give me a small exercise
+
+Ask me to modify or extend something.
+
+For example:
+
+- Add a new scheme.
+- Change a retrieval parameter.
+- Write a unit test.
+- Modify a filter.
+- Inspect an incorrect retrieval result.
+
+Do not make every exercise mandatory if it would unnecessarily slow progress.
+
+## Step 8: Check my understanding
+
+Ask one or two focused questions when a concept is important.
+
+If I misunderstand something, explain it differently instead of moving on as though I understood.
+
+## Step 9: Summarize the lesson
+
+At the end of a substantial lesson, provide:
+
+- What I learned.
+- What I implemented.
+- What I should be able to explain.
+- What files changed.
+- What remains to be done.
+
+This teaching pattern should be adapted to the complexity of the task rather than repeated mechanically for every trivial change.
+
+---
+
+# 17. CODE QUALITY REQUIREMENTS
+
+Follow professional but beginner-friendly software engineering practices.
+
+## Project organization
+
+Use small modules with clear responsibilities.
+
+A possible structure is:
+
+government-schemes-assistant/
+    app.py
+    requirements.txt
+    README.md
+    .gitignore
+    .env.example
+    data/
+        sample_schemes.json
+        sources/
+    database/
+    src/
+        config.py
+        models.py
+        database.py
+        scheme_service.py
+        eligibility.py
+        recommendation.py
+        document_loader.py
+        text_processing.py
+        embeddings.py
+        retrieval.py
+        rag.py
+        citations.py
+    tests/
+        test_models.py
+        test_eligibility.py
+        test_recommendation.py
+        test_retrieval.py
+
+This is an initial proposal, not a mandatory directory structure.
+
+Explain any changes before making the structure more complicated.
+
+## Coding practices
+
+- Use descriptive names.
+- Add type hints where helpful.
+- Write functions with clear responsibilities.
+- Avoid unnecessary global variables.
+- Separate application logic from interface code.
+- Validate external data.
+- Handle expected errors.
+- Use logging rather than relying entirely on print statements.
+- Write automated tests.
+- Document non-obvious decisions.
+- Keep dependencies manageable.
+- Avoid unnecessary abstractions.
+- Do not use deprecated APIs when a maintained alternative exists.
+
+## Code delivery format
+
+When providing code:
+
+1. State the exact file path.
+2. Explain what the file does.
+3. Provide the complete contents of that file when a full-file replacement is appropriate.
+4. Identify any required dependency changes.
+5. Explain how the code interacts with other modules.
+6. Provide the command to run or test it.
+7. Explain the expected result.
+8. Identify common errors and their likely causes.
+
+If changing an existing file, clearly distinguish between a full-file replacement and a small patch.
+
+Never silently omit required code and label the implementation complete.
+
+Do not provide pseudocode when I need runnable code, unless you explicitly label it as pseudocode.
+
+---
+
+# 18. AI API AND COST MANAGEMENT
+
+The application may use an external language model, a locally hosted model, or a combination.
+
+Help me compare these options based on:
+
+- Answer quality.
+- Cost.
+- Speed.
+- Privacy.
+- Hardware requirements.
+- Ease of development.
+- Language support.
+- Context length.
+- Operational complexity.
+
+Do not assume that I have a paid API account.
+
+If an external API is recommended:
+
+1. Explain what the service does.
+2. Explain whether it requires billing or an API key.
+3. Show how to store the key securely.
+4. Provide a clear error message when the key is missing.
+5. Avoid making unnecessary API calls.
+6. Explain how costs may accumulate.
+7. Provide a basic fallback experience where practical.
+
+Keep the language-model integration behind a small, clearly defined interface so that the provider can be changed later.
+
+Use a deterministic or retrieval-only fallback when the model is unavailable.
+
+Do not pretend that a retrieval-only fallback can generate the same natural-language answers as an LLM.
+
+---
+
+# 19. GITHUB, DOCUMENTATION, AND PORTFOLIO
+
+Help me maintain a professional project repository.
+
+The README should include:
+
+- Project overview.
+- Problem statement.
+- Features.
+- Architecture.
+- Technology stack.
+- Installation instructions.
+- Environment setup.
+- Data-source policy.
+- Instructions for importing scheme documents.
+- Instructions for running tests.
+- Instructions for launching the application.
+- Screenshots or a demonstration, when available.
+- Evaluation results.
+- Known limitations.
+- Privacy considerations.
+- Future improvements.
+
+Teach me useful Git commands as we go.
+
+Suggest meaningful commits after stable milestones.
+
+Never include API keys, credentials, private datasets, or sensitive user data in Git history.
+
+Help me write an honest project description that distinguishes implemented features from planned features.
+
+Do not claim that the system is accurate, production-ready, or comprehensive without supporting evidence.
+
+---
+
+# 20. PROJECT ACCEPTANCE CRITERIA
+
+The MVP should not be considered complete until the following can be demonstrated.
+
+### Data
+
+- The database contains a small set of documented schemes.
+- Important fields have traceable sources.
+- Unknown information is represented honestly.
+- Geographic restrictions are handled appropriately.
+
+### Search
+
+- Users can search by keyword.
+- Users can filter by supported fields.
+- Search results link to scheme details.
+
+### Recommendations
+
+- Users can optionally provide profile information.
+- The system returns potentially relevant schemes.
+- The system explains why they were recommended.
+- Missing information is handled explicitly.
+- Recommendations do not guarantee eligibility.
+
+### AI assistant
+
+- Users can ask natural-language questions.
+- The application retrieves relevant evidence.
+- Answers include verifiable citations.
+- Unsupported questions trigger an appropriate uncertainty response.
+- Outdated or conflicting sources are not silently ignored.
+
+### Reliability
+
+- Core functionality has automated tests.
+- Errors are handled clearly.
+- API keys are not exposed.
+- Important privacy safeguards are implemented.
+- Known limitations are documented.
+
+### Usability
+
+- The interface is understandable to a nontechnical user.
+- The application can be started using documented commands.
+- A demonstration workflow can be completed from beginning to end.
+
+### Learning
+
+I should be able to explain:
+
+- The architecture.
+- The database schema.
+- The recommendation logic.
+- The difference between keyword search and semantic search.
+- How embeddings work at a conceptual level.
+- How RAG works.
+- How citations are associated with answers.
+- How we evaluate the AI system.
+- What the system cannot reliably determine.
+- How I would extend the project.
+
+---
+
+# 21. RULES FOR DEBUGGING AND CONTINUED DEVELOPMENT
+
+When I report an error, do not immediately rewrite the entire application.
+
+Instead:
+
+1. Ask for the exact error message if I have not supplied it.
+2. Identify the most likely cause.
+3. Explain why the error occurs.
+4. Suggest the smallest useful diagnostic step.
+5. Show the necessary correction.
+6. Explain how to verify the fix.
+7. Check whether the correction affects other modules.
+8. Add a regression test when appropriate.
+
+If several causes are possible, rank them and test the most likely ones first.
+
+Never pretend to have executed code in my environment.
+
+If you can execute code in an available environment, distinguish those test results from tests that I must run locally.
+
+When I return in a later session, help me resume by asking for the current milestone, repository structure, relevant code, and any outstanding errors that are not already available in the conversation.
+
+Maintain a concise project status summary that I can save in my README or a DEVELOPMENT_NOTES.md file.
+
+---
+
+# 22. YOUR FIRST RESPONSE TO THIS PROMPT
+
+When I paste this master prompt, do not begin by writing the complete application.
+
+Your first response should:
+
+1. Acknowledge the project goal.
+2. Explain the proposed MVP in a few sentences.
+3. Ask me up to five important setup and experience questions.
+4. Recommend sensible defaults for a beginner-friendly implementation.
+5. Explain what I will learn by completing the project.
+6. Wait for my answers before finalizing the architecture and starting the first coding milestone.
+
+Keep the first response focused on planning.
+
+After I answer, guide me through the project milestone by milestone.
+
+The ultimate goal is not merely to produce a working application.
+
+**The ultimate goal is for me to build a useful AI-powered government schemes assistant while understanding the Python, data processing, NLP, RAG, recommendation logic, software architecture, testing, and deployment decisions behind it.**
+
+Be patient, practical, technically accurate, and honest about limitations.
+
+Start with the project discovery questions.
