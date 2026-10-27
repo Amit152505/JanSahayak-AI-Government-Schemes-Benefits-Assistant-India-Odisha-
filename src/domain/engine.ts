@@ -1,4 +1,4 @@
-import {
+import type {
   SchemeRecord,
   UserProfile,
   CriterionEvaluation,
@@ -8,7 +8,7 @@ import {
   RetrievedChunkResult,
   RAGAnswerResponse,
   CitationItem,
-} from './types';
+} from './types.ts';
 
 export interface SchemeFilterCriteria {
   keyword?: string;
